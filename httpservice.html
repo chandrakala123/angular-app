@@ -1,0 +1,109 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script>  
+
+        var app = angular.module('serviceApp', []);
+        app.directive('patientInfo',function(){
+            return{
+                restrict:'E',
+                template:'<table class="table table-bordered">'+
+                  '<td>{{user.hospitalPatientId}} {{user.deptName}}{{user.doctorName}} {{user.token}} {{user.regId}}{{user.patientVisitId}}{{user.patientName}}{{user.patientAge}}{{user.mobileNumber}}  {{user.gender}}{{user.dateOfBirth}}{{user.feeValidDate}}  {{user.patientStatus}}{{user.feeValidVisits}}</td>'+
+                 
+                     '</table>',       
+                
+                scope:{user:"=user"}    
+
+
+            }
+        })
+
+        app.controller('serviceController', function ($scope, $http) {
+            var payload = { "fromDate": "2018-04-29", "toDate": "2018-05-29", "orgId": 2253, "authenticatedUserId": 220171221000002 };
+
+
+            $http.post('http://49.207.6.227:8047/opd/fetchPatientVisitDetails', payload)
+
+                .then(function (response) {
+                    //$scope.output= response.data;
+                    $scope.details = response.data.data.patientVisitList;
+                    $scope.statuscode = response.status;
+
+
+console.log($scope.details);
+                });
+
+        });
+
+    </script>
+
+</head>
+
+<body ng-app="serviceApp" ng-controller="serviceController">
+
+    <table class="table table-bordered">
+            <th class="text-center">hospitalPatientId</th>
+            <th class="text-center">deptName</th>        
+        <th class="text-center">doctorName</th>
+        <th class="text-center">token</th>
+        <th class="text-center">RegId</th>
+        <th class="text-center">patientVisitId</th>
+        <th class="text-center">patientName</th>       
+        <th class="text-center">patientAge</th>
+        <th class="text-center">MobileNumber</th>
+        <th class="text-center">Gender</th>
+        <th class="text-center">dateOfBirth</th>
+        <th class="text-center">feeValidDate</th>
+        <th class="text-center">PatientStatus</th>
+        <th class="text-center">feeValidVisits</th>        
+
+        <tr ng-repeat="x in details">
+                <td>{{x.hospitalPatientId}}</td>                
+            <td class="text-center">{{x.deptName}}</td>           
+            <td class="text-center">{{x.doctorName}}</td>
+            <td class="text-center">{{x.token}}</td>
+            <td class="text-center">{{x.regId}}</td>
+            <td class="text-center">{{x.patientVisitId}}</td>
+            <td class="text-center">{{x.patientName}}</td>
+            <td class="text-center">{{x.patientAge}}</td>           
+            <td class="text-center">{{x.mobileNumber}}</td>
+            <td class="text-center">{{x.gender}}</td>
+            <td class="text-center">{{x.dateOfBirth}}</td>
+            <td class="text-center">{{x.feeValidDate}}</td> 
+            <td class="text-center">{{x.patientStatus}}</td>          
+            <td class="text-center">{{x.feeValidVisits}}</td>
+
+        </tr>
+    </table>
+   
+        <div ng-repeat="patient in details">
+      
+                <patient-info user="patient">
+
+                    </patient-info>   
+               
+                </div>
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+
+</html>

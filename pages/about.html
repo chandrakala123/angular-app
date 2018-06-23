@@ -1,0 +1,51 @@
+<h2>Hello!{{output}}</h2>
+<h2>Hello!{{session}}</h2>
+<h2>{{facout}}</h2>
+<h2>{{ser1}}</h2>
+<hr>
+<h3>Using API Fetching the patient-sdetails:</h3>
+<hr>
+<table class="table table-bordered">
+        <th class="text-center">hospitalPatientId</th>
+        <th class="text-center">deptName</th>        
+    <th class="text-center">doctorName</th>
+    <th class="text-center">token</th>
+    <th class="text-center">RegId</th>
+    <th class="text-center">patientVisitId</th>
+    <th class="text-center">patientName</th>       
+    <th class="text-center">patientAge</th>
+    <th class="text-center">MobileNumber</th>
+    <th class="text-center">Gender</th>
+    <th class="text-center">dateOfBirth</th>
+    <th class="text-center">feeValidDate</th>
+    <th class="text-center">PatientStatus</th>
+    <th class="text-center">feeValidVisits</th>        
+
+    <tr ng-repeat="x in details">
+            <td>{{x.hospitalPatientId}}</td>                
+        <td class="text-center">{{x.deptName}}</td>           
+        <td class="text-center">{{x.doctorName}}</td>
+        <td class="text-center">{{x.token}}</td>
+        <td class="text-center">{{x.regId}}</td>
+        <td class="text-center">{{x.patientVisitId}}</td>
+        <td class="text-center">{{x.patientName}}</td>
+        <td class="text-center">{{x.patientAge}}</td>           
+        <td class="text-center">{{x.mobileNumber}}</td>
+        <td class="text-center">{{x.gender}}</td>
+        <td class="text-center">{{x.dateOfBirth}}</td>
+        <td class="text-center">{{x.feeValidDate}}</td> 
+        <td class="text-center">{{x.patientStatus}}</td>          
+        <td class="text-center">{{x.feeValidVisits}}</td>
+
+    </tr>
+</table>
+<hr>
+<h3>Coustom Directives:</h3>
+<hr>
+<div ng-repeat="patient in details">
+      
+        <patient-info user="patient">
+
+            </patient-info>   
+       
+        </div>

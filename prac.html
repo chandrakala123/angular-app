@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body  ng-app="app" ng-controller="myCtrl">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript">
+     var app = angular.module('app', []);
+     app.directive('userInfo', function() {
+    //      return{
+    //         restrict: 'E',
+    // transclude: 'true',
+    // template: '<span ng-transclude></span>',
+    // link: function(scope, element, attr){
+    //       element.append("<strong>"+attr.title+"</strong>");
+    //       console.log(scope);
+    //       console.log(element);
+    //       console.log(attr.title);
+
+    //      }
+    //     };
+    
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: { user:'=user' },
+      template: '<table class="table table-bordered">' +
+                  '<th>user:{{user.firstName}}<br> {{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}{{user.lastName}}</th>' +
+                  '<div ng-transclude></div>' +
+                '</table>'
+    };
+
+
+
+    // var directive = {};
+
+    // directive.restrict = 'E';
+
+    // directive.template = "User : {{user.firstName}} {{user.lastName}}";
+
+    // directive.scope = {
+    //     user : "=user"
+        
+    // } 
+ 
+
+    // return directive;
+
+ });
+app.controller('myCtrl', function($scope, $http) {
+    $scope.movies = [];
+    $scope.jakob = {};
+    $scope.jakob.firstName = "Jakob";
+    $scope.jakob.lastName  = "Jenkov";
+
+    $scope.john = {};
+    $scope.john.firstName = "John";
+    $scope.john.lastName  = "Doe";
+$scope.movies.push($scope.jakob);
+$scope.movies.push($scope.john);
+console.log( $scope.movies )
+
+
+
+    
+
+ 
+});
+    </script>
+    <div ng-repeat="movie in movies">
+    
+                <user-info user="movie"></user-info>
+       
+       
+       
+    </div>
+   <!-- <user-info user="jakob"></user-info>
+   <user-info user="john"></user-info> -->
+    <!-- <div ng-repeat="movie in movies">
+//     <user-info title="{{movie}}">
+//         Movie Title :  
+//     </user-info>
+//         </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.heading{
+   
+    font-size: 30px;
+    width: 100%;
+    font-weight:bold;
+}
+
+.table{
+    border: 1px solid black;
+    height:auto;
+    width:30%;
+}
